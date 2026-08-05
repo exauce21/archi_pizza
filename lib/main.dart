@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'StackImage.dart';
 import 'appBarTitre.dart';
 import 'appBarTitre2.dart';
 
@@ -22,25 +23,48 @@ class MyApp extends StatelessWidget {
           appBar: AppBarTitre(title: "toto Pizzeria", bgColor: Color.fromRGBO(100, 200, 30, 0.5)),
           body: ListView(
             children: [
-             Stack(
-               children: [
-                 Container(
-                   width: 600,
-                   height: 278,
-                   child: Center(child: CircularProgressIndicator()),
-                 ),
-                 FadeInImage.memoryNetwork(
-                     placeholder: kTranparentImage,
-                     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
-                     width: 600,
-                     height: 278,
-                     fit: BoxFit.cover,
-                 ),
-               ],
-             )
+              StackImage(imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",),
+              Row(
+                children: [
+                  Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(
+                                left: 15,
+                                top: 15,
+                                right: 15,
+                                bottom: 0
+                            ),
+                            child: Text('Pizza Maison',
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                              left: 15,
+                            ),
+                            child: Text('Par Michel Dupont',
+                              style: TextStyle(
+                                  color: Colors.grey.shade700
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                  ),
+                  Icon( Icons.favorite, color: Colors.red,),
+                  Text('11')
+                ],
+              )
             ],
           ),
         )
     );
   }
 }
+
