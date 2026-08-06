@@ -33,17 +33,18 @@ class _FavorisWidgetState extends State<FavorisWidget> {
       }
     });
   }
+  // https://codeshare.io/5gyRyB
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         IconButton(
-          onPressed: _toggleFavorite,
-          icon: Icon(
-            _isFavorited? Icons.favorite : Icons.favorite_border,
-            color: Colors.red,
-          ),
+            onPressed: _toggleFavorite,
+            icon: Icon(
+              _isFavorited? Icons.favorite : Icons.favorite_border,
+              color: Colors.red,
+            ),
         ),
         Container(
           padding: EdgeInsets.only(right: 15),
