@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'StackImage.dart';
 import 'appBarTitre.dart';
 import 'appBarTitre2.dart';
+import 'favorisWidget.dart';
+import 'bottomBarMenu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,12 +59,60 @@ class MyApp extends StatelessWidget {
                         ],
                       )
                   ),
-                  Icon( Icons.favorite, color: Colors.red,),
-                  Text('11')
+                  //Icon( Icons.favorite, color: Colors.red,),
+                  FavorisWidget(isFavorited: true, favorisCount: 20),
                 ],
-              )
+              ),
+              Container(
+                padding: EdgeInsets.all(15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(bottom: 4),
+                          child: Icon(
+                            Icons.comment,
+                            color: Colors.black12,
+                          ),
+                        ),
+                        Text(
+                          'Commentair',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400
+                          ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(bottom: 4),
+                          child: Icon(
+                            Icons.share,
+                            color: Colors.black12,
+                          ),
+                        ),
+                        Text(
+                          'Partager',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+
             ],
           ),
+          bottomNavigationBar: Bottombarmenu(),
         )
     );
   }
