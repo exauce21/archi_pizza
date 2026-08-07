@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'StackImage.dart';
+import 'TopBarMenu.dart';
 import 'appBarTitre.dart';
 import 'bottomBarMenu.dart';
 import 'package:archi_pizza/favorisWidget.dart';
@@ -25,7 +26,8 @@ class Pizzadetails extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBarTitre(title: recette.title, bgColor: Color.fromRGBO(255, 0, 0, 0.8)),
+      //appBar: AppBarTitre(title: recette.title, bgColor: Color.fromRGBO(255, 0, 0, 0.8)),
+      appBar: Topbarmenu(title: recette.title),
       bottomNavigationBar: Bottombarmenu(),
       body: ListView(
         children: [
@@ -119,7 +121,7 @@ class Pizzadetails extends StatelessWidget {
               _liste('Sel'),
               _liste('Fromage')
             ],
-          )
+          ),
         ],
       ),
     );

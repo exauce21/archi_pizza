@@ -3,6 +3,7 @@ import 'package:archi_pizza/bottomBarMenu.dart';
 import 'package:archi_pizza/pizzaDetails.dart';
 import 'package:flutter/material.dart';
 import 'StackImage.dart';
+import 'TopBarMenu.dart';
 import 'recette.dart';
 
 class RecettesListe extends StatefulWidget {
@@ -21,15 +22,17 @@ class _RecettesListeState extends State<RecettesListe> {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
         "Super ils ont envie de faire dodo !",
         false,
-        10
+        10,
+        12.50,
     ),
     Recette(
         "Pizza papa",
         "Par Michel dudu",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
+        "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480_1_5x/img/recipe/ras/Assets/48a49653c8716457eb0b2f7eb3c7d74c/Derivates/5f24139ace17917d2acf45266604bc0aa0a43a08.jpg",
         "Super ils ont envie de faire dodo !",
         false,
-        10
+        10,
+        15.00,
     ),
     Recette(
         "Pizza maman",
@@ -37,7 +40,8 @@ class _RecettesListeState extends State<RecettesListe> {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
         "Super ils ont envie de faire dodo !",
         false,
-        10
+        10,
+        18.00,
     ),
     Recette(
         "Pizza frérot",
@@ -45,14 +49,16 @@ class _RecettesListeState extends State<RecettesListe> {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
         "Super ils ont envie de faire dodo !",
         false,
-        10
+        10,
+        35.00,
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarTitre(title: 'Liste des pizzas'),
+      //appBar: AppBarTitre(title: 'Liste des pizzas'),
+      appBar: Topbarmenu(title: 'Liste des pizzas'),
       bottomNavigationBar: Bottombarmenu(),
       body: ListView.builder(
           itemCount: recettes.length,
@@ -110,9 +116,7 @@ class RecetteItemWidget extends StatelessWidget{
                // return SlideTransition(position: animation.drive(twin), child: child,);
                animation = CurvedAnimation(parent: animation, curve: Curves.ease);
                return FadeTransition(opacity: animation, child: child);
-
               }
-
           ),
         );
 
