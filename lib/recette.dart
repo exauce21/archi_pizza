@@ -1,4 +1,5 @@
 class Recette{
+  String id;
   String title;
   String user;
   String imageUrl;
@@ -8,6 +9,7 @@ class Recette{
   double prix;
 
   Recette(
+      this.id,
       this.title,
       this.user,
       this.imageUrl,

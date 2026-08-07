@@ -1,3 +1,4 @@
+import 'package:archi_pizza/prixWidget.dart';
 import 'package:flutter/material.dart';
 import 'StackImage.dart';
 import 'TopBarMenu.dart';
@@ -13,13 +14,33 @@ class Pizzadetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Widget _liste(String texte){
-      return Padding(
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+    Widget _liste(String texte) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.red.shade50,
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text('. ', style: TextStyle(fontSize: 16),),
-            Expanded(child: Text(texte))
+            Container(
+              width: 6,
+              height: 6,
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              texte,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+            ),
           ],
         ),
       );
@@ -31,98 +52,178 @@ class Pizzadetails extends StatelessWidget {
       bottomNavigationBar: Bottombarmenu(),
       body: ListView(
         children: [
-          StackImage(imgUrl: recette.imageUrl),
-          Row(
-            children: [
-              Expanded(
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(50),
+              bottomRight: Radius.circular(50),
+            ),
+            child: StackImage(imgUrl: recette.imageUrl),
+          ),
+          const SizedBox(height: 16),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.only(
-                            left: 15,
-                            top: 15,
-                            right: 15,
-                            bottom: 0
-                        ),
-                        child: Text(recette.title,
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
-                          ),
+                      Text(
+                        recette.title,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.only(
-                          left: 15,
-                        ),
-                        child: Text(recette.user,
-                          style: TextStyle(
-                              color: Colors.grey.shade700
-                          ),
+                      const SizedBox(height: 4),
+                      Text(
+                        recette.user,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey.shade600,
                         ),
                       ),
                     ],
-                  )
-              ),
-              FavorisWidget(isFavorited: recette.isFavorite, favorisCount: recette.favoriteCount),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(bottom: 4),
-                      child: Icon(
-                          Icons.comment,
-                          color: Colors.black
-                      ),
-                    ),
-                    Text('Commenter', style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400
-                    ),
-                    )
-                  ],
+                  ),
                 ),
-                Column(
+                FavorisWidget(
+                  isFavorited: recette.isFavorite,
+                  favorisCount: recette.favoriteCount,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                _ActionButton(
+                  icon: Icons.chat_bubble_outline,
+                  label: 'Commenter',
+                  onTap: () {},
+                ),
+                const SizedBox(width: 12),
+                _ActionButton(
+                  icon: Icons.share_outlined,
+                  label: 'Partager',
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Description",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  child: Text(recette.description),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  "Ingrédients",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(bottom: 4),
-                      child: Icon(
-                          Icons.share,
-                          color: Colors.black
-                      ),
-                    ),
-                    Text('Partager', style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400
-                    ),
-                    )
+                    _liste('Farine'),
+                    _liste('Levure'),
+                    _liste('Sel'),
+                    _liste('Fromage'),
                   ],
                 ),
               ],
             ),
           ),
-          Container(
-            child: Text(recette.description),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _liste('Farine'),
-              _liste('Levure'),
-              _liste('Sel'),
-              _liste('Fromage')
-            ],
-          ),
+
+          PrixWidget(prix: recette.prix)
         ],
+      ),
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  const _ActionButton({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(30),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 18, color: Colors.black87),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
