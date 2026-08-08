@@ -7,6 +7,7 @@ class Recette{
   bool  isFavorite;
   int favoriteCount;
   double prix;
+  List<String> images;
 
   Recette(
       this.id,
@@ -17,5 +18,6 @@ class Recette{
       this.isFavorite,
       this.favoriteCount,
       this.prix,
+      this.images,
       );
 }

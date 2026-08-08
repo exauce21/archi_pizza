@@ -58,7 +58,9 @@ class Pizzadetails extends StatelessWidget {
               bottomRight: Radius.circular(50),
             ),
             child: StackImage(imgUrl: recette.imageUrl),
+
           ),
+
           const SizedBox(height: 16),
 
           Padding(
@@ -119,7 +121,7 @@ class Pizzadetails extends StatelessWidget {
           ),
 
           const SizedBox(height: 20),
-
+          // Description et Ingredients
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             padding: const EdgeInsets.all(16),
@@ -172,6 +174,10 @@ class Pizzadetails extends StatelessWidget {
               ],
             ),
           ),
+
+          const SizedBox(height: 20),
+          // Afficher les commentaires en dessus des fiches details
+
 
           PrixWidget(prix: recette.prix)
         ],
