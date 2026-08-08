@@ -125,13 +125,13 @@ class _AvisListe extends State<AvisListe> {
                                 children: [
 
                                   Text(
-                                    avisItem["user"],
+                                    "Text",
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
 
-                                  Row(
+                                  /*Row(
                                     children: List.generate(
                                       5,
                                           (starIndex) => Icon(
@@ -143,13 +143,13 @@ class _AvisListe extends State<AvisListe> {
                                         size: 18,
                                       ),
                                     ),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                             ),
 
                             Text(
-                              avisItem["date"],
+                              "avisItem[]",
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey.shade600,
@@ -162,7 +162,7 @@ class _AvisListe extends State<AvisListe> {
 
                         // COMMENTAIRE
                         Text(
-                          avisItem["commentaire"],
+                          "avisItem[]",
                           style: const TextStyle(
                             fontSize: 15,
                           ),
