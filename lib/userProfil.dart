@@ -2,6 +2,8 @@ import 'package:archi_pizza/bottomBarMenu.dart';
 import 'package:archi_pizza/user.dart';
 import 'package:flutter/material.dart';
 import 'TopBarMenu.dart';
+import 'commandeListe.dart';
+import 'contact.dart';
 
 final User user = User(
   image: "https://static.vecteezy.com/system/resources/thumbnails/055/125/883/small/close-up-portrait-of-african-teenager-with-defined-braided-cornrows-on-white-background-free-photo.jpg",
@@ -26,7 +28,8 @@ class _UserprofilState extends State<Userprofil> {
     return Scaffold(
       //backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Mon Profil'),
-      bottomNavigationBar: Bottombarmenu(),
+      //bottomNavigationBar: Bottombarmenu(),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 3),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
         children: [
@@ -124,34 +127,60 @@ class _UserprofilState extends State<Userprofil> {
 
           const SizedBox(height: 24),
 
-          // Bouton modifier — pleine largeur
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                elevation: 0,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6),
                 ),
-              ),
-              icon: const Icon(Icons.edit_outlined, size: 20),
-              label: const Text(
-                "Modifier mon profil",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              ],
+            ),
+            child: Column(
+              children: [
+                _NavTile(
+                  icon: Icons.receipt_long_outlined,
+                  color: Colors.blue,
+                  label: "Mes commandes",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const CommandesListe()),
+                    );
+                  },
                 ),
-              ),
-              onPressed: () {
-                // Modifier le profil
-              },
+                Divider(height: 1, thickness: 1, indent: 58, color: Colors.grey.shade100),
+                _NavTile(
+                  icon: Icons.headset_mic_outlined,
+                  color: Colors.purple,
+                  label: "Contactez-nous",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Contact()),
+                    );
+                  },
+                ),
+                Divider(height: 1, thickness: 1, indent: 58, color: Colors.grey.shade100),
+                _NavTile(
+                  icon: Icons.edit_outlined,
+                  color: Colors.red,
+                  label: "Modifier mon profil",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Contact()),
+                    );
+                  },
+                ),
+              ],
             ),
           ),
 
-          const SizedBox(height: 12),
+          const SizedBox(height: 24),
         ],
       ),
     );
@@ -225,6 +254,55 @@ class DividerInfo extends StatelessWidget {
       thickness: 1,
       indent: 58,
       color: Colors.grey.shade100,
+    );
+  }
+}
+
+class _NavTile extends StatelessWidget {
+  const _NavTile({
+    required this.icon,
+    required this.color,
+    required this.label,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final Color color;
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: color, size: 20),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+            ),
+            Icon(Icons.chevron_right, color: Colors.grey.shade400),
+          ],
+        ),
+      ),
     );
   }
 }

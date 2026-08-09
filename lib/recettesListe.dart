@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'StackImage.dart';
 import 'TopBarMenu.dart';
 import 'recette.dart';
+import 'ajouterPizza.dart';
 
 class RecettesListe extends StatefulWidget {
   const RecettesListe({super.key});
@@ -28,7 +29,11 @@ class _RecettesListeState extends State<RecettesListe> {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
-      ]
+      ],
+      "20min",
+      4.5,
+      0,
+      "Classiques",
     ),
     Recette(
       "2",
@@ -43,7 +48,11 @@ class _RecettesListeState extends State<RecettesListe> {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
-        ]
+        ],
+      "20min",
+      4.5,
+      0,
+      "Classiques",
     ),
     Recette(
       "3",
@@ -58,7 +67,11 @@ class _RecettesListeState extends State<RecettesListe> {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
-        ]
+        ],
+      "20min",
+      4.5,
+      0,
+      "Classiques",
     ),
     Recette(
       "4",
@@ -73,7 +86,11 @@ class _RecettesListeState extends State<RecettesListe> {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCxv_7UxuKCHrglOBjwxbOqTyMqf7v2t7r_w&usqp=CAU",
-        ]
+        ],
+      "20min",
+      4.5,
+      0,
+      "Classiques",
     ),
   ];
 
@@ -82,7 +99,7 @@ class _RecettesListeState extends State<RecettesListe> {
     return Scaffold(
       //backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Liste des pizzas'),
-      bottomNavigationBar: Bottombarmenu(),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 0),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8),
         itemCount: recettes.length,
@@ -127,6 +144,39 @@ class _RecettesListeState extends State<RecettesListe> {
             child: RecetteItemWidget(recette: recette),
           );
         },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        onPressed: () async {
+          final nouvellePizza = await Navigator.push<Recette>(
+            context,
+            MaterialPageRoute(builder: (context) => const AjouterPizza()),
+          );
+
+          if (nouvellePizza != null) {
+            setState(() {
+              recettes.add(nouvellePizza);
+            });
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('${nouvellePizza.title} ajoutée !'),
+                  backgroundColor: Colors.green.shade700,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              );
+            }
+          }
+        },
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }
