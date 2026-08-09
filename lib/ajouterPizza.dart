@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'TopBarMenu.dart';
+import 'bottomBarMenu.dart';
 import 'recette.dart';
 
 class AjouterPizza extends StatefulWidget {
@@ -61,6 +62,7 @@ class _AjouterPizzaState extends State<AjouterPizza> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Ajouter une pizza'),
+      bottomNavigationBar: const Bottombarmenu(),
       body: Form(
         key: _formKey,
         child: ListView(

@@ -49,7 +49,7 @@ class _CommandesListeState extends State<CommandesListe> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Mes commandes'),
-      bottomNavigationBar: const Bottombarmenu(currentIndex: 0),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 2),
       body: commandes.isEmpty
           ? Center(
         child: Text(

@@ -1,3 +1,4 @@
+import 'package:archi_pizza/accueil.dart';
 import 'package:flutter/material.dart';
 import 'package:archi_pizza/recettesListe.dart';
 import 'package:archi_pizza/avisListe.dart';
@@ -18,7 +19,7 @@ class Bottombarmenu extends StatelessWidget {
     late final Widget page;
     switch (index) {
       case 0:
-        page = const RecettesListe();
+        page = const Accueil();
         break;
       case 1:
         page = const AvisListe();

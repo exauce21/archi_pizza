@@ -93,6 +93,7 @@ class _AccueilState extends State<Accueil> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
+      appBar: Topbarmenu(title: 'Contactez-nous'),
       bottomNavigationBar: const Bottombarmenu(currentIndex: 0),
       body: SafeArea(
         child: ListView(

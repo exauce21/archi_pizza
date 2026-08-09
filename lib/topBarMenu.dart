@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:archi_pizza/userProfil.dart';
 
-class Topbarmenu extends StatelessWidget implements PreferredSizeWidget{
-
+class Topbarmenu extends StatelessWidget implements PreferredSizeWidget {
   const Topbarmenu({
     super.key,
     required this.title,
@@ -19,28 +18,67 @@ class Topbarmenu extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: bgColor,
+      elevation: 0,
       centerTitle: true,
-
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 30,
+      automaticallyImplyLeading: false,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              bgColor,
+              Color.lerp(bgColor, Colors.black, 0.15) ?? bgColor,
+            ],
+          ),
         ),
       ),
-
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+          fontSize: 20,
+          letterSpacing: 0.3,
+        ),
+      ),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.search, color: Colors.white),
+        _AppBarIconButton(
+          icon: Icons.search,
           onPressed: onSearchPressed,
-        )
+        ),
+        const SizedBox(width: 8),
       ],
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
+class _AppBarIconButton extends StatelessWidget {
+  const _AppBarIconButton({
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.15),
+          shape: BoxShape.circle,
+        ),
+        child: IconButton(
+          icon: Icon(icon, color: Colors.white, size: 20),
+          onPressed: onPressed,
+        ),
+      ),
+    );
+  }
+}
