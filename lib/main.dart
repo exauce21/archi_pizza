@@ -1,3 +1,4 @@
+import 'package:archi_pizza/avisListe.dart';
 import 'package:archi_pizza/recettesListe.dart';
 import 'package:flutter/material.dart';
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: RecettesListe()
+      //home: AvisListe()
     );
   }
 }

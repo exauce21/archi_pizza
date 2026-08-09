@@ -1,3 +1,4 @@
+import 'package:archi_pizza/imageSlider.dart';
 import 'package:archi_pizza/prixWidget.dart';
 import 'package:flutter/material.dart';
 import 'StackImage.dart';
@@ -52,14 +53,8 @@ class Pizzadetails extends StatelessWidget {
       bottomNavigationBar: Bottombarmenu(),
       body: ListView(
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(50),
-              bottomRight: Radius.circular(50),
-            ),
-            child: StackImage(imgUrl: recette.imageUrl),
 
-          ),
+          ImageSlider(images: recette.images),
 
           const SizedBox(height: 16),
 
