@@ -26,7 +26,8 @@ class _UserprofilState extends State<Userprofil> {
     return Scaffold(
       //backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Mon Profil'),
-      bottomNavigationBar: Bottombarmenu(),
+      //bottomNavigationBar: Bottombarmenu(),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 3),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
         children: [

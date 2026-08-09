@@ -82,7 +82,7 @@ class _RecettesListeState extends State<RecettesListe> {
     return Scaffold(
       //backgroundColor: Colors.grey.shade50,
       appBar: Topbarmenu(title: 'Liste des pizzas'),
-      bottomNavigationBar: Bottombarmenu(),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 0),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8),
         itemCount: recettes.length,

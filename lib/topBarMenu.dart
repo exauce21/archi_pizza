@@ -35,18 +35,7 @@ class Topbarmenu extends StatelessWidget implements PreferredSizeWidget{
         IconButton(
           icon: const Icon(Icons.search, color: Colors.white),
           onPressed: onSearchPressed,
-        ),
-        IconButton(
-          icon: const Icon(Icons.person, color: Colors.white),
-          onPressed: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => const Userprofil(),
-              ),
-            );
-          },
-        ),
+        )
       ],
     );
   }

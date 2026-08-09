@@ -47,7 +47,7 @@ class _AvisListeState extends State<AvisListe> {
 
     return Scaffold(
       appBar: Topbarmenu(title: 'Liste des avis'),
-      bottomNavigationBar: Bottombarmenu(),
+      bottomNavigationBar: const Bottombarmenu(currentIndex: 1),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         itemCount: avisliste.length + 1, // +1 pour le header

@@ -3,6 +3,8 @@ import 'package:archi_pizza/recettesListe.dart';
 import 'package:archi_pizza/avisListe.dart';
 import 'package:archi_pizza/userProfil.dart';
 
+import 'commandeListe.dart';
+import 'main.dart';
 import 'navItem.dart';
 
 class Bottombarmenu extends StatelessWidget {
@@ -22,8 +24,7 @@ class Bottombarmenu extends StatelessWidget {
         page = const AvisListe();
         break;
       case 2:
-      // TODO: remplacer par ta vraie page Messages
-        page = const AvisListe();
+        page = const CommandesListe();
         break;
       case 3:
         page = const Userprofil();
@@ -77,8 +78,8 @@ class Bottombarmenu extends StatelessWidget {
             onTap: () => _onTap(context, 1),
           ),
           NavItem(
-            icon: Icons.chat_bubble_rounded,
-            label: 'Messages',
+            icon: Icons.restaurant_rounded,
+            label: 'Mes commandes',
             isActive: currentIndex == 2,
             onTap: () => _onTap(context, 2),
           ),
