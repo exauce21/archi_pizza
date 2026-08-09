@@ -8,6 +8,10 @@ class Recette{
   int favoriteCount;
   double prix;
   List<String> images;
+  String duree;
+  double note;
+  int? reduction; // en %, null si pas de promo
+  String categorie;
 
   Recette(
       this.id,
@@ -19,5 +23,9 @@ class Recette{
       this.favoriteCount,
       this.prix,
       this.images,
+      this.duree,
+      this.note,
+      this.reduction,
+      this.categorie,
       );
 }

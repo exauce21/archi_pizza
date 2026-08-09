@@ -1,6 +1,8 @@
 import 'package:archi_pizza/avisListe.dart';
 import 'package:archi_pizza/recettesListe.dart';
 import 'package:flutter/material.dart';
+
+import 'accueil.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,12 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: RecettesListe()
+      home: const Accueil(),
       //home: AvisListe()
     );
   }
 }
-
-
-
-
