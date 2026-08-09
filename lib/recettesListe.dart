@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'StackImage.dart';
 import 'TopBarMenu.dart';
 import 'recette.dart';
+import 'ajouterPizza.dart';
 
 class RecettesListe extends StatefulWidget {
   const RecettesListe({super.key});
@@ -143,6 +144,39 @@ class _RecettesListeState extends State<RecettesListe> {
             child: RecetteItemWidget(recette: recette),
           );
         },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        onPressed: () async {
+          final nouvellePizza = await Navigator.push<Recette>(
+            context,
+            MaterialPageRoute(builder: (context) => const AjouterPizza()),
+          );
+
+          if (nouvellePizza != null) {
+            setState(() {
+              recettes.add(nouvellePizza);
+            });
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('${nouvellePizza.title} ajoutée !'),
+                  backgroundColor: Colors.green.shade700,
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              );
+            }
+          }
+        },
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

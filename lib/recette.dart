@@ -10,7 +10,7 @@ class Recette{
   List<String> images;
   String duree;
   double note;
-  int? reduction; // en %, null si pas de promo
+  int? reduction;
   String categorie;
 
   Recette(

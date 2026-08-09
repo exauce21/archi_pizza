@@ -1,3 +1,4 @@
+import 'package:archi_pizza/recettesListe.dart';
 import 'package:flutter/material.dart';
 import 'TopBarMenu.dart';
 import 'accueilCategoryChip.dart';
@@ -220,12 +221,20 @@ class _AccueilState extends State<Accueil> {
                     color: Colors.black87,
                   ),
                 ),
-                Text(
-                  "Voir tout",
-                  style: TextStyle(
-                    color: Colors.red.shade400,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RecettesListe()),
+                    );
+                  },
+                  child: Text(
+                    "Voir tout",
+                    style: TextStyle(
+                      color: Colors.red.shade400,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                    ),
                   ),
                 ),
               ],
